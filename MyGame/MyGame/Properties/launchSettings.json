@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "MyGame": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "remoteDebugMachine": "DESKTOP-KORMBTB",
+      "authenticationMode": "Windows"
+    },
+    "remote": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\debug\\courseWork",
+      "remoteDebugEnabled": true,
+      "remoteDebugMachine": "DESKTOP-KORMBTB",
+      "authenticationMode": "Windows",
+      "nativeDebugging": false
+    }
+  }
+}

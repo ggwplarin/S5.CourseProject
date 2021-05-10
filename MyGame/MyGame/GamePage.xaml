@@ -1,0 +1,78 @@
+﻿<Page x:Class="MyGame.GamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:MyGame"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="GamePage">
+
+    <Grid Background="#FF0F0F0F">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="416*" />
+            <ColumnDefinition Width="1240*" />
+            <ColumnDefinition Width="264*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="48" />
+            </Grid.RowDefinitions>
+            <ListView x:Name="ChatView" Background="Transparent" Padding="24" BorderBrush="Transparent"
+                      ScrollViewer.IsDeferredScrollingEnabled="True"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,64">
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="local:ChatMessage">
+                        <TextBlock Text="{Binding Path=Message}" Foreground="GhostWhite" FontSize="14"
+                                   FontFamily="Monterrat" Opacity="0.50" TextWrapping="Wrap" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Rectangle IsHitTestVisible="False" Height="128" VerticalAlignment="Bottom">
+
+            </Rectangle>
+            <TextBox x:Name="ChatBox" Style="{DynamicResource ChatBoxStyle}" Margin="16,0,16,16"
+                     VerticalAlignment="Bottom" Height="48" Text="" KeyDown="ChatBox_KeyDown" />
+            <Rectangle Grid.Row="1" Fill="#FF0F0F0F" />
+        </Grid>
+        <Grid Grid.Column="1">
+            <Button Style="{DynamicResource AnswerButton}" Height="48" Width="216" Content="ОТВЕТИТЬ" Margin="0,0,0,32" VerticalAlignment="Bottom" FontSize="26" IsDefault="True" Visibility="Collapsed"></Button>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ListView x:Name="PlayerCardsListView" Grid.Row="1" Background="Transparent" BorderBrush="Transparent" Padding="16">
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="local:Player">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <!--<ColumnDefinition Width="64" />
+                                <ColumnDefinition Width="16" />-->
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="32"/>
+                                <RowDefinition Height="32"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="Transparent" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="8,8,8,8"
+                                       RadiusX="8" RadiusY="8" />
+                            <TextBlock Grid.Column="2" Text="{Binding Path=NickName}"
+                                       Foreground="GhostWhite" FontFamily="Monsterrat" Grid.Row="0" FontSize="20" VerticalAlignment="Center" Opacity="0.75"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Path=Score}" FontFamily="Monsterrat" Foreground="GhostWhite" Grid.Row="1" FontSize="20" VerticalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </Grid>
+        <Grid ColumnSpan="3" Background="#FF0F0F0F" x:Name="WaitingOverlay" Visibility="Collapsed">
+            <TextBlock Text="Ожидание начала игры..." Foreground="GhostWhite" FontFamily="Spectral" FontSize="48" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+        </Grid>
+    </Grid>
+</Page>
